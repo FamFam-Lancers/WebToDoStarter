@@ -26,7 +26,6 @@ public class TaskForm {
     @Future (message = "期限が過去に設定されています。")
     private LocalDateTime deadline;
 
-    // Nakano update
     private boolean newTask;
     
     public TaskForm() {}
