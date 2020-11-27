@@ -18,14 +18,14 @@ import com.example.demo.entity.Task;
 @ActiveProfiles("unit")//application-unit.ymlのunitを対応（DBの設定を読み込む）
 @DisplayName("TaskServiceImplの結合テスト")
 class TaskServiceImplTest {
-	
+
     @Autowired
     private TaskService taskService;
-    
+
     @Test
     @DisplayName("タスクが取得できない場合のテスト")
     void testGetTaskFormReturnNull() {
-        
+
         try {
         	Optional<Task> task = taskService.getTask(0);
         } catch (TaskNotFoundException e) {
@@ -39,18 +39,15 @@ class TaskServiceImplTest {
     	//全件取得
 
         //Taskテーブルに入っている2件が取得できているか確認
-    	
+
     }
-    
-    
+
     @Test
     @DisplayName("1件のタスクが取得できた場合のテスト")
     void testGetTaskFormReturnOne() {
     	//idが1のTaskを取得
-        
+
         //取得できたことを確認
     }
-    
-
 
 }
