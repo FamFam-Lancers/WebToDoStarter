@@ -40,11 +40,11 @@ public class TaskController {
      */
     @GetMapping
     public String task(TaskForm taskForm, Model model) {
-    	
+
     	//新規登録か更新かを判断する仕掛け
-        
+
         //Taskのリストを取得する
-        
+
         model.addAttribute("list", "");
         model.addAttribute("title", "タスク一覧");
 
@@ -56,7 +56,6 @@ public class TaskController {
      * @param taskForm
      * @param result
      * @param model
-     * @param principal
      * @return
      */
     @PostMapping("/insert")
@@ -64,15 +63,15 @@ public class TaskController {
     	@Valid @ModelAttribute TaskForm taskForm,
         BindingResult result,
         Model model) {
-        
+
         if (!result.hasErrors()) {
         	//削除してください
         	Task task = null;
-        	
+
         	//TaskFormのデータをTaskに格納
-        	
+
         	//一件挿入後リダイレクト
-        	
+
             return "";
         } else {
             taskForm.setNewTask(true);
@@ -98,11 +97,11 @@ public class TaskController {
         Model model) {
 
     	//Taskを取得(Optionalでラップ)
-        
+
         //TaskFormへの詰め直し
-        
+
         //TaskFormがnullでなければ中身を取り出し
-		
+
         model.addAttribute("taskForm", "");
         List<Task> list = taskService.findAll();
         model.addAttribute("list", list);
@@ -111,12 +110,11 @@ public class TaskController {
 
         return "task/index";
     }
-    
+
     /**
      * タスクidを取得し、一件のデータ更新
      * @param taskForm
      * @param result
-     * @param id
      * @param model
      * @param redirectAttributes
      * @return
@@ -128,12 +126,12 @@ public class TaskController {
     	@RequestParam("taskId") int taskId,
     	Model model,
     	RedirectAttributes redirectAttributes) {
-    	
+
         if (!result.hasErrors()) {
         	//TaskFormのデータをTaskに格納
-        	
+
         	//更新処理、フラッシュスコープの使用、リダイレクト（個々の編集ページ）
-        	
+
             return "" ;
         } else {
             model.addAttribute("taskForm", taskForm);
@@ -152,9 +150,9 @@ public class TaskController {
     public String delete(
     	@RequestParam("taskId") String id,
     	Model model) {
-    	
+
     	//タスクを一件削除しリダイレクト
-    	
+
         return "";
     }
 
@@ -183,7 +181,7 @@ public class TaskController {
      * @return
      */
     private TaskForm makeTaskForm(Task task) {
-    	
+
         TaskForm taskForm = new TaskForm();
 
         taskForm.setTypeId(task.getTypeId());
@@ -191,7 +189,7 @@ public class TaskController {
         taskForm.setDetail(task.getDetail());
         taskForm.setDeadline(task.getDeadline());
         taskForm.setNewTask(false);
-        
+
         return taskForm;
     }
 }
